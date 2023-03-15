@@ -25,7 +25,7 @@ const maps = {
     "Land of Trial" : "./muMaps/Land_of_Trials.png",
     "Atlans" : "./muMaps/Atlans.png",
     "Crywolf" : "./muMaps/Crywolf.png",
-    "Lacleon": "./muMaps/Raklion.png"
+    "Raklion": "./muMaps/Raklion.png"
 }
 
 app.get('/:userName', async(req,res) => {
@@ -75,8 +75,6 @@ async function editImage(imgSrc, x, y){
     ctx.arc(parseInt(x), parseInt(y), 2, 0, 2 * Math.PI);
     ctx.arc(parseInt(x), parseInt(y), 15, 0, 2 * Math.PI);
     ctx.arc(parseInt(x), parseInt(y), 20, 0, 2 * Math.PI);
-    /* ctx.arc(parseInt(x), parseInt(y), 30, 0, 2 * Math.PI);
-    ctx.arc(parseInt(x), parseInt(y), 35, 0, 2 * Math.PI); */
     ctx.stroke();
     var z = canvas.toDataURL()
     return z.toString()
