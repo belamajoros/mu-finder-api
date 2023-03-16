@@ -53,7 +53,7 @@ app.get('/:userName', async(req,res) => {
             }
             const mapImg = maps[mapName];
             const result = await editImage(mapImg,y,x)
-            return res.status(200).send({result: result})
+            return res.status(200).send({result: result, location: nextTd})
         })
     } catch (error) {
         console.log(error.message)
@@ -72,9 +72,7 @@ async function editImage(imgSrc, x, y){
     ctx.arc(parseInt(x), parseInt(y), 15, 0, 2 * Math.PI);
     ctx.arc(parseInt(x), parseInt(y), 20, 0, 2 * Math.PI);
     ctx.stroke();
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    ctx.rotate(-Math.PI / 2); // rotate counter-clockwise by 90 degrees
-    ctx.translate(-canvas.width / 2, -canvas.height / 2);
+    ctx.rotate(-Math.PI / 2);
     var z = canvas.toDataURL()
     return z.toString()
 }
