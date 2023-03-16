@@ -53,7 +53,7 @@ app.get('/:userName', async(req,res) => {
             }
             const mapImg = maps[mapName];
             const result = await editImage(mapImg,y,x)
-            return res.status(200).send({result: result, location: nextTd})
+            return res.json({result: result, location: data.toString()});
         })
     } catch (error) {
         console.log(error.message)
