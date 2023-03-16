@@ -72,7 +72,7 @@ async function editImage(imgSrc, x, y){
     ctx.arc(parseInt(x), parseInt(y), 15, 0, 2 * Math.PI);
     ctx.arc(parseInt(x), parseInt(y), 20, 0, 2 * Math.PI);
     ctx.stroke();
-    ctx.rotate(-Math.PI / 2);
+    ctx.rotate(-90 * Math.PI / 180);
     var z = canvas.toDataURL()
     return z.toString()
 }
