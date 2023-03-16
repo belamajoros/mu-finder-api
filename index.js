@@ -72,7 +72,9 @@ async function editImage(imgSrc, x, y){
     ctx.arc(parseInt(x), parseInt(y), 15, 0, 2 * Math.PI);
     ctx.arc(parseInt(x), parseInt(y), 20, 0, 2 * Math.PI);
     ctx.stroke();
-    ctx.rotate(-90 * Math.PI / 180);
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.rotate(-Math.PI / 2); // rotate counter-clockwise by 90 degrees
+    ctx.translate(-canvas.width / 2, -canvas.height / 2);
     var z = canvas.toDataURL()
     return z.toString()
 }
