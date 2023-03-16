@@ -13,16 +13,16 @@ const maps = {
     "Noria" : "./muMaps/Noria.png",
     "Aida" : "./muMaps/Aida.png",
     "Kalrutan" : "./muMaps/Karutan.png",
-    "Kalrutan 2" : "./muMaps/Karutan_2.png",
+    "Kalrutan2" : "./muMaps/Karutan_2.png",
     "Kantru" : "./muMaps/Kanturu_Ruins.png",
-    "Refuge of Balgass" : "./muMaps/Barracks_of_Balgass.png",
-    "Kantru Ruins" : "./muMaps/Kanturu_Relics.png",
+    "RefugeofBalgass" : "./muMaps/Barracks_of_Balgass.png",
+    "KantruRuins" : "./muMaps/Kanturu_Relics.png",
     "Icarus" : "./muMaps/Icarus.png",
     "Elbeland" : "./muMaps/Elbeland.png",
-    "Lost Tower" : "./muMaps/Lost_Tower.png",
+    "LostTower" : "./muMaps/Lost_Tower.png",
     "Tarkan" : "./muMaps/Tarkan.png",
     "Dungeon" : "./muMaps/Dungeon.png",
-    "Land of Trial" : "./muMaps/Land_of_Trials.png",
+    "LandofTrial" : "./muMaps/Land_of_Trials.png",
     "Atlans" : "./muMaps/Atlans.png",
     "Crywolf" : "./muMaps/Crywolf.png",
     "Raklion": "./muMaps/Raklion.png"
@@ -33,7 +33,6 @@ app.get('/:userName', async(req,res) => {
         const { userName } = req.params;
         var x,y;
         var mapName;
-        var img;
         var hexName = nameToHex(userName)
         axios.get('https://www.realmuonline.hu/character/' + hexName + '/INFINITY').then(async (response) => {
             const html = response.data
@@ -52,9 +51,6 @@ app.get('/:userName', async(req,res) => {
             if(!(mapName in maps)) {
                 return res.status(500).send({ error: `Can not find ${userName}.` });
             }
-            console.log(mapName)
-            console.log(x)
-            console.log(y)
             const mapImg = maps[mapName];
             const result = await editImage(mapImg,y,x)
             return res.status(200).send({result: result})
@@ -76,6 +72,7 @@ async function editImage(imgSrc, x, y){
     ctx.arc(parseInt(x), parseInt(y), 15, 0, 2 * Math.PI);
     ctx.arc(parseInt(x), parseInt(y), 20, 0, 2 * Math.PI);
     ctx.stroke();
+    ctx.rotate(-Math.PI / 2);
     var z = canvas.toDataURL()
     return z.toString()
 }
